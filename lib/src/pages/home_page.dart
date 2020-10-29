@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
     _channelInfo = await Services.getChannelInfo();
     _item = _channelInfo.items[0];
     _playListId = _item.contentDetails.relatedPlaylists.uploads;
-    print('_playListId : ' + _playListId);
+    
     await _loadVideos();
     setState(() {
       _loading = false;
@@ -49,7 +49,6 @@ class _HomePageState extends State<HomePage> {
 
     _nextPageToken = tempVideosList.nextPageToken;
     _videosList.videos.addAll(tempVideosList.videos);
-    print('videos : ${_videosList.videos}');
     setState(() {
       
     });

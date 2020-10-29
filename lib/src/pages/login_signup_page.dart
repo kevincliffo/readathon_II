@@ -911,7 +911,6 @@ class _LoginSignupPageState extends State<LoginSignupPage>
     }
     catch(e)
     {
-      print("Error : " + e.toString());
       errorFound = true;
       _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(e.toString()),));
     }

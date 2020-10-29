@@ -23,7 +23,6 @@ class Services{
                         parameters);
 
     Response response = await http.get(uri, headers:headers);
-    // print(response.body);
 
     ChannelInfo channelInfo = channelInfoFromJson(response.body);
     return channelInfo;

@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import "package:readathon/src/app.dart";
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(App());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences _sharedPrefs = await SharedPreferences.getInstance();
+  String authToken = _sharedPrefs.getString("auth_token") ?? "";
+  
+  print('authToken : $authToken');
+  runApp(App(authToken:authToken));
 }

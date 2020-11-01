@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:readathon/src/widgets/subject_list_tile.dart';
 
 class SubjectsPage extends StatefulWidget {
   SubjectsPage({Key key}) : super(key: key);
@@ -10,8 +11,39 @@ class SubjectsPage extends StatefulWidget {
 class _SubjectsPageState extends State<SubjectsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-       //child: child,
+    return Card(
+      elevation:5.0,
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child:Column(
+          children: <Widget>[
+            GestureDetector(
+              onTap:(){
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text("E-Readathon To be implemented"),
+                ));
+              },
+              child: SubjectListTile(
+                icon:Icons.book, 
+                text:"E-Readathon"
+              ),
+            ),
+            Divider(height:10.0, color:Colors.grey,),
+            GestureDetector(
+              onTap: (){
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text("E-Lab To be implemented"),
+                ));
+              },
+              child: SubjectListTile(
+                icon:Icons.local_hospital, 
+                text:"E-Lab"
+              ),
+            ),
+            Divider(height:10.0, color:Colors.grey,),
+          ],
+        ),
+      ),
     );
   }
 }

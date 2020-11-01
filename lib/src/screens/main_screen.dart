@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readathon/src/pages/home_page.dart';
 import 'package:readathon/src/pages/subjects_page.dart';
-import 'package:readathon/src/pages/settings_page.dart';
+import 'package:readathon/src/pages/profile_page.dart';
 import 'package:readathon/src/pages/videos_page.dart';
 
 
@@ -18,17 +18,17 @@ class _MainScreenState extends State<MainScreen> {
   int currentTabIndex = 0;
   HomePage homePage;
   SubjectsPage subjectsPage;
-  SettingsPage settingsPage;
+  ProfilePage profilePage;
   VideosPage videosPage;
 
   @override
   void initState() {
     homePage = HomePage();
     subjectsPage = SubjectsPage();
-    settingsPage = SettingsPage();
+    profilePage = ProfilePage();
     videosPage = VideosPage();
 
-    pages = [homePage, videosPage, subjectsPage, settingsPage];
+    pages = [homePage, videosPage, subjectsPage, profilePage];
     currentPage = homePage;
 
     super.initState();
@@ -83,8 +83,8 @@ class _MainScreenState extends State<MainScreen> {
             label: "Subjects",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
+            icon: Icon(Icons.verified_user),
+            label: "Profile",
           ),
         ],
       ),

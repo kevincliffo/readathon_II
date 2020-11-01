@@ -20,9 +20,9 @@ class _HomePageState extends State<HomePage> {
       child: Padding(
         padding: EdgeInsets.all(16.0),
         child: CircleAvatar(
-          radius: 72.0,
+          radius: 182.0,
           backgroundColor: Colors.transparent,
-          backgroundImage: AssetImage('assets/images/e-funza2.png'),
+          backgroundImage: AssetImage('assets/images/learning.jpeg'),
         ),
       ),
     );
@@ -38,18 +38,59 @@ class _HomePageState extends State<HomePage> {
     final bio = Padding(
       padding: EdgeInsets.all(8.0),
       child:Text(
-        'Google Flutter developer Kenya',
+        'E-Funza provides an integrated e-learning solution to all children and students between the age of 11 and 21. Our platform offers an accelerated learning environment to enable our participants improve on their literacy especially through understanding of the English language, communication skills, and even sharpen their focus through entertaining puzzle games. Our packages give access to such programs as E-READATHON and E-LAB:',
         textAlign: TextAlign.center,
         style:TextStyle(fontSize: 16.0, color:Colors.black),
       ),
     );
 
-    final fav = Padding(
+    final eReadathon = Padding(
       padding: EdgeInsets.all(8.0),
       child:Text(
-        'For God so loved the world, that he gave his only son, tht whosoever beieveth in him should not perish but have everlasting life',
+        'E-READATHON: a literacy-based competition where participants engage in weekly reading competitions and answering a set of questions based on the content provided. Our weekly winners get awarded.',
         textAlign: TextAlign.center,
         style:TextStyle(fontSize: 16.0, color:Colors.black),
+      ),
+    );
+
+    final eLab = Padding(
+      padding: EdgeInsets.all(8.0),
+      child:Text(
+        'E-LAB: an interactive science experimentations and projects platform for all science, engineering, and technology enthusiasts. Participants engage in tests to gauge their level of understanding. The best participants get awarded.',
+        textAlign: TextAlign.center,
+        style:TextStyle(fontSize: 16.0, color:Colors.black),
+      ),
+    );
+
+    final mission = Padding(
+      padding: EdgeInsets.all(8.0),
+      child:Column(
+        children: [
+          Text(
+            'MISSION',
+            textAlign: TextAlign.center,
+            style:TextStyle(fontSize: 16.0, color:Colors.black, fontWeight: FontWeight.bold),
+          ),
+          Text('To foster a sustainable learning eco-system by creating experiences where English language is made easier to understand and apply in practical environments.',
+            textAlign: TextAlign.center,
+            style:TextStyle(fontSize: 16.0, color:Colors.black),),
+        ],
+      ),
+    );
+
+    final vision = Padding(
+      padding: EdgeInsets.all(8.0),
+      child:Column(
+        children: [
+          Text(
+            'VISION',
+            textAlign: TextAlign.center,
+            style:TextStyle(fontSize: 16.0, color:Colors.black, fontWeight: FontWeight.bold),
+          ),
+          Text('Establish a society that can communicate effectively.',
+            textAlign: TextAlign.center,
+            style:TextStyle(fontSize: 16.0, color:Colors.black),),
+        ],
       ),
     );
 
@@ -69,13 +110,18 @@ class _HomePageState extends State<HomePage> {
           profilePic,
           welcome,
           bio,
-          fav
+          eReadathon,
+          eLab,
+          mission,
+          vision,
         ],
       )
     );
 
     return Scaffold(
-      body: body,
+      body: SingleChildScrollView(
+        child: body
+      ),
     );
   }
 }

@@ -50,11 +50,5 @@ class Services{
     VideosList videosList = videosListFromJson(response.body);
 
     return videosList;
-  }
+  } 
 }
-
-/* curl \
-  'https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=UCoJOLFVcsCrQzGC3G3SftJA&access_token=AIzaSyDAmEdL393oAW_HZtQqsuD2G8CYa6OOdms&key=[YOUR_API_KEY]' \
-  --header 'Authorization: Bearer [YOUR_ACCESS_TOKEN]' \
-  --header 'Accept: application/json' \
-  --compressed */

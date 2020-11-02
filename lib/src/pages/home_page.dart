@@ -19,11 +19,14 @@ class _HomePageState extends State<HomePage> {
       tag: 'hero',
       child: Padding(
         padding: EdgeInsets.all(16.0),
-        child: CircleAvatar(
-          radius: 182.0,
-          backgroundColor: Colors.transparent,
-          backgroundImage: AssetImage('assets/images/learning.jpeg'),
+        child: Image(
+          image: AssetImage('assets/images/learning.png'),
         ),
+        // child: CircleAvatar(
+        //   radius: 182.0,
+        //   backgroundColor: Colors.transparent,
+        //   backgroundImage: AssetImage('assets/images/learning.jpeg'),
+        // ),
       ),
     );
 

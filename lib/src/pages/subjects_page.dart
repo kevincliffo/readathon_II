@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:readathon/src/pages/questions_list_page.dart';
 import 'package:readathon/src/widgets/subject_list_tile.dart';
 
 class SubjectsPage extends StatefulWidget {
@@ -19,9 +20,10 @@ class _SubjectsPageState extends State<SubjectsPage> {
           children: <Widget>[
             GestureDetector(
               onTap:(){
-                Scaffold.of(context).showSnackBar(SnackBar(
-                  content: Text("E-Readathon To be implemented"),
-                ));
+                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => QuestionsListPage() ));
+                // Scaffold.of(context).showSnackBar(SnackBar(
+                //   content: Text("E-Readathon To be implemented"),
+                // ));
               },
               child: SubjectListTile(
                 icon:Icons.book, 

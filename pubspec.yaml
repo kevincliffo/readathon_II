@@ -63,6 +63,7 @@ flutter:
     - assets/images/cross.png
     - assets/images/edit.png
     - assets/images/learning.jpeg
+    - assets/images/learning.png
 
   fonts:
       - family: Onyx

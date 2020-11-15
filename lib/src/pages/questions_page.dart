@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:readathon/models/exam_model.dart';
 
 class QuestionsPage extends StatefulWidget {
+  final Exam exam;
+  QuestionsPage({this.exam});
   @override
   _QuestionsPageState createState() => _QuestionsPageState();
 }
@@ -10,7 +13,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body:ListView.builder(
-        itemCount: 10,
+        itemCount: widget.exam.questions.length,
         itemBuilder: (context, index) => 
           Card(            
             elevation: 0.0,
@@ -18,7 +21,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
               children: [
                 ListTile(
                   title:Text(
-                    "Question",
+                    widget.exam.questions[index].question,
                     style:Theme.of(context).textTheme.headline6,
                   ),
                   leading: Text((index + 1).toString()),

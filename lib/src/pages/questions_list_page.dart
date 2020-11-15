@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:readathon/scoped-models/exam_model.dart';
-// import 'package:readathon/models/exam_model.dart';
+import 'package:readathon/models/exam_model.dart';
+import 'package:readathon/models/exam_question_model.dart';
+// import 'package:readathon/models/exam_question_model.dart';
 // import 'package:readathon/scoped-models/exam_model.dart';
 import 'package:readathon/src/pages/questions_page.dart';
+import 'package:readathon/src/utils/colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class QuestionsListPage extends StatefulWidget {
 
@@ -11,54 +16,102 @@ class QuestionsListPage extends StatefulWidget {
 }
 
 class _QuestionsListPageState extends State<QuestionsListPage> {
-  bool _loading;
-
+  bool isLoading;
+  List<Exam> _exams;
   @override
   void initState() { 
     super.initState();
-    _loading = true;
-    _getExamsInfo();   
+    this.fetchExams();
   }
-  
-  _getExamsInfo()async{    
-    ExamModel examModel = new ExamModel();
-    examModel.fetchExams();
-    await _loadExams();
-    setState(() {
-      _loading = false;
-    });
-  }
-
-  _loadExams() async{
-    setState(() {
-      print(_loading);
-    });
-  }  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          child: ListView.builder(
-            itemCount: 10,
+        body: getBody(),
+    );
+  }
+
+  Widget getBody(){
+    if(_exams == null || _exams.contains(null) || _exams.length < 0 || isLoading){
+      return Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(primary),));
+    }
+    return ListView.builder(
+            itemCount: _exams.length,
             itemBuilder: (context, index) => Card(
               elevation: 0.0,
               child: InkWell(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => QuestionsPage() ));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => QuestionsPage(exam:_exams[index]) ));
                 },
                 child: ListTile(
                   leading: Text((index + 1).toString()),
                   title: Text(
-                    "Question",
+                    _exams[index].title,
                     style: Theme.of(context).textTheme.headline6,
                   ),
-                  trailing: Text(DateTime.now().toString()),
+                  subtitle: Text(_exams[index].author),
+                  //trailing: Text(DateTime.now().toString()),
                 ),
               ),
             ),
-          ),
-        ),
-    );
+          );
   }
+
+  fetchExams() async{
+    setState(() {
+      isLoading = true;
+    });
+
+    try{
+      SharedPreferences _sharedPrefs = await SharedPreferences.getInstance();
+      String authToken = _sharedPrefs.getString("auth_token");
+      //String authToken = "4914d556c7850d23588d5ec2330275d6113f3e5d";
+      String url = "https://www.efunza.com/api/exams-api/";
+      //url = "http://10.0.2.2:8000/api/exams-api/";
+      final headers = <String, String>{'Authorization': 'Token '+ authToken,
+                                       'Content-Type': 'application/json',
+                                       'Accept': 'application/json',};
+      final http.Response response = await http.get(Uri.encodeFull(url), headers:headers);
+      
+      final List<dynamic> fetchedData = json.decode(response.body);
+      final List<Exam> examItems = [];
+      List<ExamQuestion> examQuestions = [];
+      int counter = 1;
+      
+      fetchedData.forEach((dynamic examData){
+        List<String> content = examData["content"].toString().split("</p>");
+        
+        content.forEach((String question) { 
+          print('question : ' + question);
+          String cleanedQuestion = question.replaceAll("\n", "").replaceAll("<p>", "");
+          ExamQuestion examQuestion = ExamQuestion(
+            id: counter.toString(),
+            parentId: examData["id"].toString(),
+            question: cleanedQuestion
+          );
+          counter = counter + 1;
+
+          examQuestions.add(examQuestion);
+        });
+        Exam examItem = Exam(
+          id: examData["id"].toString(),
+          title: examData["title"],
+          author: examData["author"],
+          topic: examData["topic_id"].toString(),
+          dateAdded: examData["date_added"],
+          questions:examQuestions
+        );
+        examItems.add(examItem);
+        examQuestions = [];
+      });
+      setState(() {
+        _exams = examItems;
+        isLoading = false;
+      });
+    }
+    catch(e){
+      print("error : " + e.toString());
+      isLoading = false;
+    }
+  } 
 }

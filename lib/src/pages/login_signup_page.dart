@@ -890,7 +890,9 @@ class _LoginSignupPageState extends State<LoginSignupPage>
   {
     bool errorFound = false;
     try{
-      http.Response response = await http.post("https://efunza.com/api/token/login/",
+      String url = "https://efunza.com/api/token/login/";
+      //url = "http://10.0.2.2:8000/api/token/login/";
+      http.Response response = await http.post(url,
                                               headers: <String, String>{
                                                 'Content-Type': 'application/json; charset=UTF-8'},
                                               body: json.encode({"email":controllerEmail.text, "password":controllerPassword.text}));

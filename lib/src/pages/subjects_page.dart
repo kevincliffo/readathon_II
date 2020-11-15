@@ -21,9 +21,6 @@ class _SubjectsPageState extends State<SubjectsPage> {
             GestureDetector(
               onTap:(){
                 Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => QuestionsListPage() ));
-                // Scaffold.of(context).showSnackBar(SnackBar(
-                //   content: Text("E-Readathon To be implemented"),
-                // ));
               },
               child: SubjectListTile(
                 icon:Icons.book, 

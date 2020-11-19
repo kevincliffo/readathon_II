@@ -11,6 +11,7 @@ class QuestionsPage extends StatefulWidget {
 class _QuestionsPageState extends State<QuestionsPage> {
   @override
   Widget build(BuildContext context) {
+    print("widget.exam.questions[index].question.length : " + widget.exam.questions.length.toString());
     return Scaffold(
       body:ListView.builder(
         itemCount: widget.exam.questions.length,

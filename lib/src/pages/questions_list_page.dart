@@ -37,25 +37,25 @@ class _QuestionsListPageState extends State<QuestionsListPage> {
       return Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(primary),));
     }
     return ListView.builder(
-            itemCount: _exams.length,
-            itemBuilder: (context, index) => Card(
-              elevation: 0.0,
-              child: InkWell(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => QuestionsPage(exam:_exams[index]) ));
-                },
-                child: ListTile(
-                  leading: Text((index + 1).toString()),
-                  title: Text(
-                    _exams[index].title,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  subtitle: Text(_exams[index].author),
-                  //trailing: Text(DateTime.now().toString()),
-                ),
-              ),
+      itemCount: _exams.length,
+      itemBuilder: (context, index) => Card(
+        elevation: 0.0,
+        child: InkWell(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => QuestionsPage(exam:_exams[index]) ));
+          },
+          child: ListTile(
+            leading: Text((index + 1).toString()),
+            title: Text(
+              _exams[index].title,
+              style: Theme.of(context).textTheme.headline6,
             ),
-          );
+            subtitle: Text(_exams[index].author),
+            //trailing: Text(DateTime.now().toString()),
+          ),
+        ),
+      ),
+    );
   }
 
   fetchExams() async{

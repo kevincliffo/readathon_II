@@ -15,8 +15,8 @@ class _QuestionsPageState extends State<QuestionsPage> {
     return Scaffold(
       body:ListView.builder(
         itemCount: widget.exam.questions.length,
-        itemBuilder: (context, index) => 
-          Card(            
+        itemBuilder: (context, index) =>
+          Card(
             elevation: 0.0,
             child: Column(
               children: [

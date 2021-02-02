@@ -66,8 +66,8 @@ class _QuestionsListPageState extends State<QuestionsListPage> {
     try{
       SharedPreferences _sharedPrefs = await SharedPreferences.getInstance();
       String authToken = _sharedPrefs.getString("auth_token");
-      String url = "https://www.efunza.com/api/exams-api/";
-      //url = "http://10.0.2.2:8000/api/exams-api/";
+      String url = "https://e-funza.herokuapp.com/api/exams-api/";
+      // url = "http://10.0.2.2:8000/api/exams-api/";
       final headers = <String, String>{'Authorization': 'Token '+ authToken,
                                        'Content-Type': 'application/json',
                                        'Accept': 'application/json',};

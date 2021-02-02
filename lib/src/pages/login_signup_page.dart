@@ -819,7 +819,7 @@ class _LoginSignupPageState extends State<LoginSignupPage>
   {  
     bool errorFound = false;
     try{
-      await http.post("https://www.efunza.com/api/users/",
+      await http.post("https://e-funza.herokuapp.com/api/users/",
                       headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8'},
                       body: json.encode({"email":signupEmailController.text.toLowerCase(), "password":signupPasswordController.text,
                                         "first_name":signupFirstNameController.text, "last_name": signupLastNameController.text,
@@ -828,7 +828,6 @@ class _LoginSignupPageState extends State<LoginSignupPage>
                                       )
                     );
       // print("response.body : " + response.body);
-      // final Map<String, dynamic> data = json.decode(response.body);
     }
     catch(e)
     {
@@ -890,7 +889,7 @@ class _LoginSignupPageState extends State<LoginSignupPage>
   {
     bool errorFound = false;
     try{
-      String url = "https://efunza.com/api/token/login/";
+      String url = "https://e-funza.herokuapp.com/api/token/login/";
       //url = "http://10.0.2.2:8000/api/token/login/";
       http.Response response = await http.post(url,
                                               headers: <String, String>{

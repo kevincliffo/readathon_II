@@ -24,8 +24,8 @@ class ExamModel extends Model{
       SharedPreferences _sharedPrefs = await SharedPreferences.getInstance();
       String authToken = _sharedPrefs.getString("auth_token");
       //String authToken = "4914d556c7850d23588d5ec2330275d6113f3e5d";
-      String url = "https://www.efunza.com/api/exams-api/";
-      //url = "http://10.0.2.2:8000/api/exams-api/";
+      String url = "https://e-funza.herokuapp.com/api/exams-api/";
+      // url = "http://10.0.2.2:8000/api/exams-api/";
       final headers = <String, String>{'Authorization': 'Token '+ authToken,
                                        'Content-Type': 'application/json',
                                        'Accept': 'application/json',};

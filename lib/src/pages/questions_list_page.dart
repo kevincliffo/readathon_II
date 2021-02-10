@@ -72,8 +72,9 @@ class _QuestionsListPageState extends State<QuestionsListPage> {
                                        'Content-Type': 'application/json',
                                        'Accept': 'application/json',};
       final http.Response response = await http.get(Uri.encodeFull(url), headers:headers);
-      
+      print('response.body : ' + response.body);
       final List<dynamic> fetchedData = json.decode(response.body);
+      
       final List<Exam> examItems = [];
       List<ExamQuestion> examQuestions = new List<ExamQuestion>();
       int counter = 1;

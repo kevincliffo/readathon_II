@@ -7,6 +7,6 @@ void main() async{
   SharedPreferences _sharedPrefs = await SharedPreferences.getInstance();
   String authToken = _sharedPrefs.getString("auth_token") ?? "";
   // authToken = "";
-  print('authToken : $authToken');
+  
   runApp(App(authToken:authToken));
 }

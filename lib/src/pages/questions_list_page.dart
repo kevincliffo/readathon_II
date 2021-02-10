@@ -79,14 +79,11 @@ class _QuestionsListPageState extends State<QuestionsListPage> {
       int counter = 1;
       
       fetchedData.forEach((dynamic examData){
-        // print('content - examData : ' + examData["content"].toString());
         htmlParser = new HTMLParser(examData["content"].toString());
         htmlParser.removeOLTags();
         htmlParser.createQuestionsList();
 
-        htmlParser.questions.forEach((String question) { 
-          // print('question : ' + question);
-          
+        htmlParser.questions.forEach((String question) {          
           ExamQuestion examQuestion = ExamQuestion(
             id: counter.toString(),
             parentId: examData["id"].toString(),

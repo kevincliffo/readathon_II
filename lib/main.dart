@@ -6,7 +6,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences _sharedPrefs = await SharedPreferences.getInstance();
   String authToken = _sharedPrefs.getString("auth_token") ?? "";
-  authToken = "";
+  // authToken = "";
   print('authToken : $authToken');
   runApp(App(authToken:authToken));
 }

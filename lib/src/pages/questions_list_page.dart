@@ -71,8 +71,7 @@ class _QuestionsListPageState extends State<QuestionsListPage> {
       final headers = <String, String>{'Authorization': 'Token '+ authToken,
                                        'Content-Type': 'application/json',
                                        'Accept': 'application/json',};
-      final http.Response response = await http.get(Uri.encodeFull(url), headers:headers);
-      print('response.body : ' + response.body);
+      final http.Response response = await http.get(Uri.encodeFull(url), headers:headers);      
       final List<dynamic> fetchedData = json.decode(response.body);
       
       final List<Exam> examItems = [];
@@ -80,13 +79,13 @@ class _QuestionsListPageState extends State<QuestionsListPage> {
       int counter = 1;
       
       fetchedData.forEach((dynamic examData){
-        //List<String> content = examData["content"].toString().split("</p>");
+        // print('content - examData : ' + examData["content"].toString());
         htmlParser = new HTMLParser(examData["content"].toString());
         htmlParser.removeOLTags();
         htmlParser.createQuestionsList();
 
         htmlParser.questions.forEach((String question) { 
-          print('question : ' + question);
+          // print('question : ' + question);
           
           ExamQuestion examQuestion = ExamQuestion(
             id: counter.toString(),

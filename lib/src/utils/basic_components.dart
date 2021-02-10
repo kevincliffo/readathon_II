@@ -15,14 +15,19 @@ class HTMLParser{
   void createQuestionsList()
   {
     List<String> questions;
+    // List<String> editedQuestions = [];
 
     questions = htmlString.split('</li>');
     String singleQuestion;
 
-    questions.forEach((String question) { 
-      singleQuestion = htmlString.replaceAll("<li>", "").replaceAll("</li>", "").replaceAll("<p>", "")
+    print('questions : ' + questions.toString());
+    print("***************************************************************");
+    questions.forEach((String question) {
+      singleQuestion = question.replaceAll("<li>", "").replaceAll("</li>", "").replaceAll("<p>", "")
                      .replaceAll("</p>", "").replaceAll("/n", "").replaceAll("&quot;", '"')
                      .replaceAll("&nbsp;", ' ').replaceAll("&#39;", "'").replaceAll("<br />", "");
+      print('singleQuestion - basiccomponents : ' + singleQuestion);
+      print("=============================================================================");
       singleQuestions.add(singleQuestion);
     });
   }
